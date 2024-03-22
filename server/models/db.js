@@ -6,7 +6,12 @@ let dbURI = credentials.mongo.development.connectionString;
 if (process.env.NODE_ENV === 'production') {
   dbURI = credentials.mongo.production.connectionString;
 }
-mongoose.connect(dbURI);
+
+const run = async () => {
+  await mongoose.connect(dbURI);
+}
+
+run();
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${dbURI}`);

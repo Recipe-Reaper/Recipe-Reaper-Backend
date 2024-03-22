@@ -3,10 +3,10 @@ module.exports = {
         development: {
             // This is connecting to a local instance. Change this to a connection
             // string going to Mongodb Atlas if you prefer that
-            connectionString: 'mongodb://127.0.0.1:27017/Recipe-Reaper?retryWrites=true&w=majority'
+            connectionString: 'mongodb+srv://ElizabethU:RecipeReaperDB@recipereaper.oc4dbbr.mongodb.net/RecipeReaperData?retryWrites=true&w=majority&appName=RecipeReaper'
         },
         production: {
-            connectionString: 'mongodb://127.0.0.1:27017/Recipe-Reaper?retryWrites=true&w=majority'
+            connectionString: 'mongodb+srv://ElizabethU:RecipeReaperDB@recipereaper.oc4dbbr.mongodb.net/RecipeReaperData?retryWrites=true&w=majority&appName=RecipeReaper'
         }
     },
     session: {

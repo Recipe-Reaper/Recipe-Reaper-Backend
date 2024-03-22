@@ -26,4 +26,4 @@ const checkLogin = function(req, res) {
     console.log(req.body.password);
 }
 
-module.exports = {viewUsers, checkLogin};
+module.exports = {viewUsers, create, checkLogin};
