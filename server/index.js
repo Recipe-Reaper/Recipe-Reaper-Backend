@@ -12,8 +12,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //Session
+const cookieParser = require('cookie-parser');
 const credentials = require('./credentials.js');
 const appSession = require("express-session")(credentials.session);
+app.use(cookieParser());
 app.use(appSession);
 
 //Passport
@@ -40,7 +42,7 @@ const port = (process.env.port || 8080)
 //Routes
 app.get("/login", loginController.viewUsers);
 app.post("/login", passport.authenticate('local', {failureRedirect: '/login'}), loginController.checkLogin);
-app.post("/addGrocery", groceryController.viewGroceries);
+app.post("/addGrocery", groceryController.createGrocery);
 
 
 app.listen(port, () => {

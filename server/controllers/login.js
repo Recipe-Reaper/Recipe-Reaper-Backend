@@ -22,8 +22,8 @@ const create = async function (req, res) {
 }
 
 const checkLogin = function(req, res) {
-    console.log(req.body.username);
-    console.log(req.body.password);
+    res.send(req.body.username)
 }
+
 
 module.exports = {viewUsers, create, checkLogin};
