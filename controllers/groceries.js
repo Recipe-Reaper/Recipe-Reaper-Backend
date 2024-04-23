@@ -1,19 +1,41 @@
 const mongoose = require("mongoose");
-const Grocery = mongoose.model("Grocery");
 const User = mongoose.model("User");
 
 const viewGroceries = function (req, res) {
-    console.log(req.body.foodName);
-    console.log(req.body.expirationDate);
+    const goodNames = [];
+    const expiredNames = [];
+    const goodDates = [];
+    const expiredDates = [];
+    if (req.query.user && req.query.location) {
+        User.find({username: req.query.user}).lean()
+        .then((foundUser) => {
+            foundUser[0].groceries.forEach((grocery) => {
+            if (grocery.location === req.query.location) {
+                if (grocery.expirationDate.getTime() < Date.now()) {
+                    expiredNames.push(grocery.foodName);
+                    expiredDates.push(grocery.expirationDate);
+                }
+                else {
+                    goodNames.push(grocery.foodName);
+                    goodDates.push(grocery.expirationDate);
+                }
+            }
+        })})
+        .then(() => {res.json({goodNames, goodDates, expiredNames, expiredDates})});
+    }
+    else {
+        res.json("User not logged in.");
+    }
 }
 
 const createGrocery = function (req, res) {
-    if (req.body.user != "") {
+    if (req.body.user) {
         User.findOneAndUpdate(
             {username: req.body.user},
             {$push: {groceries : {
                 foodName: req.body.foodName,
-                expirationDate: req.body.expirationDate
+                expirationDate: req.body.expirationDate,
+                location: req.body.location
             }}}).then((result) => {console.log(result)});
     }
     else {

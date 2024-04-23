@@ -44,9 +44,9 @@ app.use(cors({
 app.options('*', cors())
 
 //Routes
-app.get("/default", loginController.viewUsers);
 app.use("/auth", authRoute);
 app.post("/addGrocery", groceryController.createGrocery);
+app.get("/viewGroceries", groceryController.viewGroceries);
 //Port
 const port = (process.env.port || 5000)
 

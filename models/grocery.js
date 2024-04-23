@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const grocerySchema = new mongoose.Schema({
     foodName: String,
-    expirationDate: Date
+    expirationDate: Date,
+    location: String
 });
 
 const Grocery = mongoose.model('Grocery', grocerySchema);
