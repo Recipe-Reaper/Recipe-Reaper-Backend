@@ -36,7 +36,7 @@ const createGrocery = function (req, res) {
                 foodName: req.body.foodName,
                 expirationDate: req.body.expirationDate,
                 location: req.body.location
-            }}}).then((result) => {console.log(result)});
+            }}}).exec();
     }
     else {
         console.log("User not logged in.");
